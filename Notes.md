@@ -8,7 +8,7 @@ belongs_to region
 
 name
 website
-phone number
+phone
 description:text
 
 - User

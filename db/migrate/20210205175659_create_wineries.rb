@@ -5,8 +5,8 @@ class CreateWineries < ActiveRecord::Migration[6.1]
       t.string :website
       t.string :phone
       t.text :description
-      t.belongs_to :user, null: false, foreign_key: true
-      t.belongs_to :region, null: false, foreign_key: true
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :region, foreign_key: true
 
       t.timestamps
     end
