@@ -1,4 +1,3 @@
 class Region < ApplicationRecord
-  belongs_to :user
-  belongs_to :winery
+  has_many :wineries
 end
