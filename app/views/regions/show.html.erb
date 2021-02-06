@@ -1,12 +1,7 @@
-<ul>
-    <% @regions.each do |region| %>
-        <li>
-            <%= link_to region.name, region_path(region) %>
-            <ol>
-                <% region.wineries.each do |winery| %>
-                    <li><%= link_to winery.name, winery_path(post) %></li>
-                <% end %>
-            </ol>
-        </li>
+<h1><%= @region.name %> - <%= pluralize(@region.wineries.count, "wineries") %></h1>
+
+<ol>
+    <% @region.wineries.each do |winery| %>
+        <li><%= link_to winery.name, winery_path(winery) %></li>
     <% end %>
-</ul>
+</ol>
