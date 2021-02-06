@@ -8,19 +8,37 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
 
   <body>
-    <div>
+    <div class="navbar-fixed">
+        <nav class="#b71c1c red darken-4">
+          <div class="container">
+            <div class="nav-wrapper">
+              <a href="/" class="brand-logo">California Wineries</a>
+              <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+              </a>
+              <ul class="right hide-on-med-and-down">
     <% if logged_in? %>
-      <%= link_to "Add a Winery", new_winery_path %> |
-      <%= link_to "All Wineries", wineries_path %> |
-      <%= link_to "Add a Comment", new_comment_path %> |
-      <%= link_to "Logout", logout_path, method: 'delete' %>
+      <li><%= link_to "Add a Winery", new_winery_path %></li>
+      <li><%= link_to "All Wineries", wineries_path %></li>
+      <li><%= link_to "Add a Comment", new_comment_path %></li>
+      <li><%= link_to "Logout", logout_path, method: 'delete' %></li>
     <% else %>
-      <%= link_to "Sign Up", signup_path %> |
-      <%= link_to "Log In", login_path %>
+      <li><%= link_to "Sign Up", signup_path %></li>
+      <li><%= link_to "Log In", login_path %></li>
     <% end %>
+    </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
       
     </div>
     

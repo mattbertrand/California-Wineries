@@ -4,8 +4,8 @@ class Winery < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
   
-  scope :alpha, -> { order(:title) }
-  
+  scope :alpha, -> { order(:name) }
+
 end
 
 

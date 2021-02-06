@@ -12,10 +12,10 @@ class WineriesController < ApplicationController
 
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @wineries = @user.wineries
+            @wineries = @user.wineries.alpha
         else
             @error = "That user doesn't exist" if params[:user_id]
-            @wineries = Winery.all
+            @wineries = Winery.alpha
         end
     end
 
@@ -51,7 +51,7 @@ class WineriesController < ApplicationController
 
     private
         def winery_params
-            params.require(:winery).permit(:name, :website, :phone, :description, :region_id, :region_attributes: [:name])
+            params.require(:winery).permit(:name, :website, :phone, :description, :region_id, region_attributes: [:name])
         end
 
        

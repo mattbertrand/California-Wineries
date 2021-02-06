@@ -4,6 +4,10 @@
 <div><%= @winery.description %></div>
 
 <h2>By: <%= @winery.user.username %></h2>
+<h3>Region: <%= @winery.region.try(:name) %></h3>
+<% if @winery.user == current_user %>
+    <h4><%= link_to "Edit Winery", edit_winery_path(@winery) %></h4>
+<% end %>
 
 </p>
 <p><%= link_to 'Add a new comment', new_winery_comment_path(@winery) %> </p>

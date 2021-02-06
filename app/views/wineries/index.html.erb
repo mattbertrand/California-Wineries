@@ -2,6 +2,6 @@
 
 <ul>
 <% @wineries.each do |winery| %>
-    <li><%= link_to winery.name, winery_path(winery) %></li>
+    <li><%= link_to winery.name, winery_path(winery) %> - <%= winery.name %></li>
 <% end %>
 </ul>
