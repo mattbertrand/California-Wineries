@@ -10,5 +10,5 @@
 
 <h4>Comments:</h4>
 <% @winery.comments.each do |c| %>
-    <li><strong><%= c.user.username %> says "<%= link_to c.content, comment_path(c)%></li>
+    <li><strong><%= c.user.username %></strong> says "<%= link_to c.content, winery_comment_path(@winery, c)%></li>
 <% end %>

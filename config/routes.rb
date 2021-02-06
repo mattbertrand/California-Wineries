@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
+  resources :wineries do
+    resources :comments, only: [:new, :create, :index]
+  end
   resources :comments
   resources :users do
     resources :wineries, only: [:new, :create, :index]
-  end
-  resources :wineries do
-    resources :comments, only: [:new, :create, :index]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
