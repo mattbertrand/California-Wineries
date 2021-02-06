@@ -1,0 +1,7 @@
+<h1>All Wineries</h1>
+
+<ul>
+<% @wineries.each do |winery| %>
+    <li><%= link_to winery.name %></li>
+<% end %>
+</ul>
