@@ -1,14 +1,18 @@
 <h1><%= @winery.name %></h1>
-<h2>By: <%= @winery.user.username %></h2>
-
 <div><%= @winery.phone %></div>
-<div><%= @winery.website %></div>
+<div><%= link_to @winery.website %></div>
 <div><%= @winery.description %></div>
 
-<p><%= link_to 'See all comments', winery_comments_path(@winery) %> </p>
+<h2>By: <%= @winery.user.username %></h2>
+
+</p>
 <p><%= link_to 'Add a new comment', new_winery_comment_path(@winery) %> </p>
 
-<h4>Comments:</h4>
-<% @winery.comments.each do |c| %>
-    <li><strong><%= c.user.username %></strong> says "<%= link_to c.content, winery_comment_path(@winery, c)%></li>
+
+<% if !@winery.comments.empty? %>
+    <p><%= link_to 'See all comments', winery_comments_path(@winery) %> </p>
+    <h4>Most recent comments:</h4>
+    <% @winery.comments.each do |c| %>
+        <li><strong><%= c.user.username %></strong> says "<%= link_to c.content, winery_comments_path(@winery, c)%>" at <%= c.updated_at.strftime("%I:%M %p on %m/%d/%Y") %></li>
+    <% end %>
 <% end %>
