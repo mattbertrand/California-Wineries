@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
+  match '/auth/:google_oauth2/callback' => 'sessions#google', via: [:get, :post]
+
   resources :wineries do
     resources :comments, only: [:new, :create, :index]
   end
