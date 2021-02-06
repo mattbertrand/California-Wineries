@@ -19,14 +19,15 @@ class SessionsController < ApplicationController
     end
 
     def google
-        @user = User.find_or_create_by(username: auth["info"]["name"]) do |user|
+        @user = User.find_or_create_by(email: auth["info"]["email"]) do |user|
+            user.username = auth['info']["first_name"]
             user.password = SecureRandom.hex(10)
         end
-        if @user && @user.id
+        if @user.save
             session[:user_id] = @user.id
-            redirect_to wineries_path
+            redirect_to user_path(@user)
         else
-            redirect_to "/login"
+            redirect_to "/"
         end
     end
 
