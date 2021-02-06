@@ -1,5 +1,5 @@
-<% if @winery %>
-    <h1>New Comment for <%= @winery.name %>!</h1>
+<% if @comment.winery %>
+    <h1>New Comment for <%= @comment.winery.name %>!</h1>
 <% else %>
     <h1>New comment</h1>
 <% end %>
@@ -16,9 +16,9 @@
     </div>
 <% end %>
 
-<%= form_for ([@winery,@comment]) do |f| %>
+<%= form_for ([@comment.winery,@comment]) do |f| %>
     
-    <% if !@winery %>
+    <% if !@comment.winery %>
         <%= f.label :winery %>
         <%= f.collection_select :winery_id, Winery.all, :id, :name %>
     <% else %>

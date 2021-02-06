@@ -1,1 +1,11 @@
-<h1>All Comments </h1>
+<% if @winery %>
+    <h1>Comments for <%= @winery.name %></h1>
+<% else %>
+    <h1>All Comments</h1>
+<% end %>
+
+<ul>
+<%= @comments.each do |c| %>
+    <li><%= c.user.username %> says "<%= c.content %>" about this winery: <strong><%= link_to c.winery.name, winery_path(c.winery_id) %></li>
+<% end %>
+</ul>

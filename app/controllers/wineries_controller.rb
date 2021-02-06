@@ -2,11 +2,16 @@ class WineriesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new
-        @winery = Winery.new
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @winery = @user.wineries.build
+        else
+            @winery = Winery.new
+        end
     end
 
     def show
         @winery = Winery.find_by(id: params[:id])
+        redirect_to wineries_path if !@winery
     end
 
     def create
