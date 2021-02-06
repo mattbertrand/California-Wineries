@@ -7,6 +7,7 @@ class WineriesController < ApplicationController
         else
             @winery = Winery.new
         end
+        @winery.build_region
     end
 
     def index
@@ -32,11 +33,25 @@ class WineriesController < ApplicationController
         redirect_to wineries_path if !@winery
     end
 
+    def edit
+        @winery = Winery.find_by_id(params[:id])
+        redirect_to wineries_path if !@winery || @winery.user != current_user
+        @winery.build_region if !@winery.region
+    end
 
+    def update
+        @winery = Winery.find_by(id: params[:id])
+        redirect_to wineries_path if !@winery || @winery.user != current_user
+        if @winery.update(winery_params)
+            redirect_to winery_path(@winery)
+        else
+            render :edit
+        end
+    end
 
     private
         def winery_params
-            params.require(:winery).permit(:name, :website, :phone, :description)
+            params.require(:winery).permit(:name, :website, :phone, :description, :region_id, :region_attributes: [:name])
         end
 
        
