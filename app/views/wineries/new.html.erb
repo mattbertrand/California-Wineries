@@ -1,6 +1,15 @@
 <h1>New Winery</h1>
 
 <%= form_for @winery do |f| %>
+
+    <%= f.label "Choose a region:" %>
+    <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: true %>
+
+    <p>Or create a new region: 
+        <%= f.fields_for :region do |r| %>
+            <%= r.text_field :name %>
+        <% end %>
+    </p>
     
     <%= f.label :name %>
     <%= f.text_field :name %><br><br>
