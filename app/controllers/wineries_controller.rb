@@ -5,6 +5,10 @@ class WineriesController < ApplicationController
         @winery = Winery.new
     end
 
+    def show
+        @winery = Winery.find_by(id: params[:id])
+    end
+
     def create
         @winery = current_user.wineries.build(winery_params)
         if @winery.save

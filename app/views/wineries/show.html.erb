@@ -1,0 +1,14 @@
+<h1><%= @winery.name %></h1>
+<h2>By: <%= @winery.user.username %></h2>
+
+<div><%= @winery.phone %></div>
+<div><%= @winery.website %></div>
+<div><%= @winery.description %></div>
+
+<p><%= link_to 'See all comments', winery_comments_path(@winery) %> </p>
+<p><%= link_to 'Add a new comment', new_winery_comment_path(@winery) %> </p>
+
+<h4>Comments:</h4>
+<% @winery.comments.each do |c| %>
+    <li><strong><%= c.user.username %> says "<%= link_to c.content, comment_path(c)%></li>
+<% end %>

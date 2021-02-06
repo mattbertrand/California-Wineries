@@ -2,7 +2,12 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new
-        @comment = Comment.new
+        if params[:winery_id] && @winery = Winery.find_by_id(params[:winery_id])
+            @comment = @winery.comments.build
+        else
+            @error = "That winery doesn't exist" if params[:winery_id]  
+            @comment = Comment.new
+        end
     end
 
     def index
@@ -34,7 +39,7 @@ class CommentsController < ApplicationController
     def update
         @comment = Commment.find_by(id: params[:id])
         if @comment.update(comment_params)
-            redirect_to comment_path
+            redirect_to comment_path(@comment)
         else
             render :edit
         end

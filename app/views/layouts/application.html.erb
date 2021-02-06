@@ -15,6 +15,7 @@
     <% if logged_in? %>
       <%= link_to "Add a Winery", new_winery_path %> |
       <%= link_to "All Wineries", wineries_path %> |
+      <%= link_to "Add a Comment", new_comment_path %> |
       <%= link_to "Logout", logout_path, method: 'delete' %>
     <% else %>
       <%= link_to "Sign Up", signup_path %> |

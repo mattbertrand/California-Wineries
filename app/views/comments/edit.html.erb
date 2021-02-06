@@ -1,0 +1,12 @@
+<h1>Edit comment:</h1>
+
+<%= form_for (@comment) do |f| %>
+    
+    <%= f.label :winery %>
+    <%= f.collection_select :winery_id, Winery.all, :id, :name %>
+
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+
+    <%= f.submit %>
+<% end %>

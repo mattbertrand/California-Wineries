@@ -1,0 +1,32 @@
+<% if @winery %>
+    <h1>New Comment for <%= @winery.name %>!</h1>
+<% else %>
+    <h1>New comment</h1>
+<% end %>
+
+<% if @comment.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+            <% @comment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_for ([@winery,@comment]) do |f| %>
+    
+    <% if !@winery %>
+        <%= f.label :winery %>
+        <%= f.collection_select :winery_id, Winery.all, :id, :name %>
+    <% else %>
+        <%= f.hidden_field :winery_id %>
+    <% end %>
+
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+
+    <%= f.submit %>
+<% end %>
