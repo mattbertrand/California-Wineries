@@ -3,8 +3,10 @@
 <div><%= link_to @winery.website %></div>
 <div><%= @winery.description %></div>
 
-<h2>By: <%= @winery.user.username %></h2>
+
 <h3>Region: <%= @winery.region.try(:name) %></h3>
+
+<h2>By: <%= @winery.user.username %></h2>
 <% if @winery.user == current_user %>
     <h4><%= link_to "Edit Winery", edit_winery_path(@winery) %></h4>
 <% end %>

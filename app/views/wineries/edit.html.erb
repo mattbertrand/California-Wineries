@@ -3,7 +3,7 @@
 <%= form_for @winery do |f| %>
 
     <%= f.label "Choose a region:" %>
-    <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: true %>
+    <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: "Select Region" %>
 
     <p>Or create a new region: 
         <%= f.fields_for :region do |r| %>
@@ -26,3 +26,9 @@
     <%= f.submit %>
 
 <% end %>
+
+<script>
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
