@@ -5,7 +5,7 @@
 <% end %>
 
 <ul>
-<%= @comments.each do |c| %>
+<% @comments.each do |c| %>
     <li><%= c.user.username %> says "<%= c.content %>" about this winery: <strong><%= link_to c.winery.name, winery_path(c.winery_id) %></strong></li>
 <% end %>
 </ul>

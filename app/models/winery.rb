@@ -7,7 +7,7 @@ class Winery < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 3..50 }
   validates :website, presence: true
   validates :phone, presence: true
-  validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
+  validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "phone number must match this format: 888-8888-8888" }
 
   accepts_nested_attributes_for :region, reject_if: :all_blank
   

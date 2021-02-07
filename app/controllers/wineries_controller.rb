@@ -1,5 +1,6 @@
 class WineriesController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :find_winery, only: [:show, :edit, :update]
     
     def new
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -30,18 +31,15 @@ class WineriesController < ApplicationController
     end
 
     def show
-        @winery = Winery.find_by(id: params[:id])
         redirect_to wineries_path if !@winery
     end
 
     def edit
-        @winery = Winery.find_by_id(params[:id])
         redirect_to wineries_path if !@winery || @winery.user != current_user
         @winery.build_region if !@winery.region
     end
 
     def update
-        @winery = Winery.find_by(id: params[:id])
         redirect_to wineries_path if !@winery || @winery.user != current_user
         if @winery.update(winery_params)
             redirect_to winery_path(@winery)
@@ -54,5 +52,9 @@ class WineriesController < ApplicationController
     private
         def winery_params
             params.require(:winery).permit(:name, :website, :phone, :description, :region_id, region_attributes: [:name])
+        end
+
+        def find_winery
+            @winery = Winery.find_by(id: params[:id])
         end
 end
