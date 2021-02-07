@@ -1,12 +1,14 @@
 <h1><%= @winery.name %></h1>
-<div><%= @winery.phone %></div>
-<div><%= link_to_if @winery.website.present?, @winery.website, url_checker(@winery.website), :target => "_blank" %></div>
-<div><%= @winery.description %></div>
+<h4>Region: <%= @winery.region.try(:name) %></h4>
+
+<h5>Phone Number: <%= @winery.phone %></h5>
+<h5>Website: <%= link_to_if @winery.website.present?, @winery.website, url_checker(@winery.website), :target => "_blank" %></h5>
+<div>Description: <%= @winery.description %></div>
 
 
-<h3>Region: <%= @winery.region.try(:name) %></h3>
 
-<h2>By: <%= @winery.user.username %></h2>
+
+<h4>By: <%= @winery.user.username %></h4>
 <% if @winery.user == current_user %>
     <h4><%= link_to "Edit Winery", edit_winery_path(@winery) %></h4>
 <% end %>

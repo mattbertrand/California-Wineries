@@ -24,6 +24,7 @@ class WineriesController < ApplicationController
         if @winery.save
             redirect_to wineries_path
         else
+            flash.now[:error] = @winery.errors.full_messages
             render :'new'
         end
     end
@@ -45,6 +46,7 @@ class WineriesController < ApplicationController
         if @winery.update(winery_params)
             redirect_to winery_path(@winery)
         else
+            flash.now[:error] = @winery.errors.full_messages
             render :edit
         end
     end
@@ -53,6 +55,4 @@ class WineriesController < ApplicationController
         def winery_params
             params.require(:winery).permit(:name, :website, :phone, :description, :region_id, region_attributes: [:name])
         end
-
-       
 end

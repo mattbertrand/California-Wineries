@@ -4,6 +4,11 @@ class Winery < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
 
+  validates :name, presence: true, uniqueness: true, length: { in: 3..50 }
+  validates :website, presence: true
+  validates :phone, presence: true
+  validates :phone, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }
+
   accepts_nested_attributes_for :region, reject_if: :all_blank
   
   scope :alpha, -> { order(:name) }
