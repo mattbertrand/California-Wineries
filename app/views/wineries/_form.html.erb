@@ -1,7 +1,7 @@
 <%= form_for winery do |f| %>
 
     <%= f.label "Choose a region:" %>
-    <%= f.collection_select :region_id, Region.all, :id, :name, include_blank: "Select Region" %>
+    <%= f.collection_select :region_id, Region.all.select(:name).distinct, :id, :name, include_blank: "Select Region" %>
 
     <p>Or create a new region: 
         <%= f.fields_for :region do |r| %>
