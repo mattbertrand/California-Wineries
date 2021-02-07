@@ -54,18 +54,7 @@
       <% end %>
       <%= @error %>
       
-      <% if flash[:error] %>
-    <div class="red" style="padding 10px;">
-        <ul style="margin: 0">
-            <% flash[:error].each do |error| %>
-                <li><%= error %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
-
-<%= content_tag("p", flash[:notice]) if flash[:notice] %>
-    </div>
+      <%= render 'layouts/errors' %>
 
     <div class="container">
     <%= yield %>
