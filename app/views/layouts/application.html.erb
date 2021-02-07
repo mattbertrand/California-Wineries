@@ -41,11 +41,20 @@
     <% end %>
     </ul>
             </div>
-          </div>
-        </nav>
-      </div>
+          </nav>
+        </div>
+      <ul class="sidenav" id="mobile-nav">
+        <% if logged_in? %>
+            <li><%= link_to "Logout", logout_path, :class => "btn btn-primary", method: "DELETE" %></li>
+            <li><%= link_to "Add a Winery", new_winery_path, :class => "btn btn-primary" %></li>
+            <li><%= link_to "My wineries", user_wineries_path(current_user), :class => "btn btn-primary"  %></li>
+            <li><%= link_to "All Wineries", wineries_path, :class => "btn btn-primary" %></li>
+        <% else %>
+            <li><%= link_to "Signup", signup_path %></li>
+            <li><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
       
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <div>
@@ -61,3 +70,8 @@
     </div>
   </body>
 </html>
+
+<script>
+  const sideNav = document.querySelector('.sidenav');
+        M.Sidenav.init(sideNav, {});
+</script>
