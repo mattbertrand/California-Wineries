@@ -1,10 +1,9 @@
-ul>
+<ul>
     <% @regions.each do |region| %>
         <li>
-            <%= link_to region.name, region_path(region) %>
             <ol>
                 <% region.wineries.each do |winery| %>
-                    <li><%= link_to winery.name, winery_path(post) %></li>
+                    <li><%= link_to winery.name, winery_path(winery) %></li>
                 <% end %>
             </ol>
         </li>
