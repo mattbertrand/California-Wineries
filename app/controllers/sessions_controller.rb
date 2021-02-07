@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     def home
+        redirect_to wineries_path if logged_in?
     end
 
     def create
