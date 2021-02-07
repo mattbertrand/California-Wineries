@@ -1,6 +1,6 @@
 <h1><%= @winery.name %></h1>
 <div><%= @winery.phone %></div>
-<div><%= link_to @winery.website, "http://#{@winery.website}", :target => "_blank" %></div>
+<div><%= link_to_if @winery.website.present?, @winery.website, url_checker(@winery.website), :target => "_blank" %></div>
 <div><%= @winery.description %></div>
 
 
