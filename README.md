@@ -1,24 +1,4 @@
-# README
+Welcome to California Wineries
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+On this website, you can share your wineries with others. After you sign up or log in via Google, you can see everybody's wineries, add a winery and comment on someone else's winery.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
