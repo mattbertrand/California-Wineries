@@ -11,6 +11,7 @@
 <h4>By: <%= @winery.user.username %></h4>
 <% if @winery.user == current_user %>
     <h4><%= link_to "Edit Winery", edit_winery_path(@winery) %></h4>
+    <h4><%= link_to 'Delete Winery',  @winery,  method: :delete, data: { confirm: 'Are you sure?' } %></h4>
 <% end %>
 
 </p>

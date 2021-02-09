@@ -1,3 +1,3 @@
 class Region < ApplicationRecord
-  has_many :wineries
+  has_many :wineries, dependent: :nullify
 end

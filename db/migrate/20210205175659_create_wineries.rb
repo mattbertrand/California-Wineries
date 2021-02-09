@@ -6,7 +6,7 @@ class CreateWineries < ActiveRecord::Migration[6.1]
       t.string :phone
       t.text :description
       t.belongs_to :user, foreign_key: true
-      t.belongs_to :region, foreign_key: true
+      t.belongs_to :region, foreign_key: {on_delete: :cascade}
 
       t.timestamps
     end

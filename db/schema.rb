@@ -51,6 +51,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_180456) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "wineries"
-  add_foreign_key "wineries", "regions"
+  add_foreign_key "wineries", "regions", on_delete: :cascade
   add_foreign_key "wineries", "users"
 end

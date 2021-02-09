@@ -1,6 +1,6 @@
 class WineriesController < ApplicationController
     before_action :redirect_if_not_logged_in
-    before_action :find_winery, only: [:show, :edit, :update]
+    before_action :find_winery, only: [:show, :edit, :update, :destroy]
     
     def new
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -47,6 +47,12 @@ class WineriesController < ApplicationController
             flash.now[:error] = @winery.errors.full_messages
             render :edit
         end
+    end
+
+    def destroy
+        @winery.destroy
+        flash[:notice] = "#{@winery.name} was deleted"
+        redirect_to wineries_path
     end
 
     private
