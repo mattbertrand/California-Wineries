@@ -1,6 +1,7 @@
 class WineriesController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :find_winery, only: [:show, :edit, :update, :destroy]
+    before_action :find_region, only: [:index, :new, :create]
     
     def new
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -11,22 +12,31 @@ class WineriesController < ApplicationController
         @winery.build_region
     end
 
+    
+    def create
+        @winery = current_user.wineries.build(winery_params)
+        if @winery.save
+            if @region
+                redirect_to region_wineries_path(@region)
+            else
+                redirect_to wineries_path
+            end
+        else
+            flash.now[:error] = @winery.errors.full_messages
+            if @region
+                render :new_region_winery
+            else
+                render :'new'
+            end
+        end
+    end
+    
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @wineries = @user.wineries.alpha
         else
             @error = "That user doesn't exist" if params[:user_id]
             @wineries = Winery.alpha
-        end
-    end
-
-    def create
-        @winery = current_user.wineries.build(winery_params)
-        if @winery.save
-            redirect_to wineries_path
-        else
-            flash.now[:error] = @winery.errors.full_messages
-            render :'new'
         end
     end
 
@@ -61,6 +71,12 @@ class WineriesController < ApplicationController
         end
 
         def find_winery
-            @winery = Winery.find_by(id: params[:id])
+            @winery = Winery.find_by_id(params[:id])
+        end
+
+        def find_region
+            if params[:region_id]
+                @region = Region.find_by_id(params[:id])
+            end
         end
 end

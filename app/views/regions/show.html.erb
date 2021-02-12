@@ -5,3 +5,5 @@
         <li><%= link_to winery.name, winery_path(winery) %></li>
     <% end %>
 </ol>
+
+   <h4><%= link_to 'Delete Region',  @region,  method: :delete, data: { confirm: 'Are you sure?' } %></h4>

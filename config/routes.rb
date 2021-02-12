@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :wineries, only: [:new, :create, :index]
   end
-  resources :regions, only: [:index, :show]
+  resources :regions do
+    resources :wineries, only: [:new, :create, :index, :show]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
